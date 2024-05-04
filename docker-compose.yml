@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 80:80
+    environment:
+      MONGO_URI: mongodb+srv://amirabbaslinux:AtHNPR0KUtJB9xoY@cluster0.byec9f9.mongodb.net/twitter-db?retryWrites=true&w=majority&appName=Cluster0
+      PORT: 80
+      JWT_SECRET: legMFAwOiZnlBd7sBvgdKPxeyDlEVLKcDVgEZ4wCzIg=
+      NODE_ENV: production
+      CLOUDINARY_CLOUD_NAME: dh1c9g6co
+      CLOUDINARY_API_KEY: 276686424187543
+      CLOUDINARY_API_SECRET: oN0H5pbzVA4ThVsv5Zzu25XXPP4
+
+  react:
+    build:
+      context: .
+      dockerfile: react.Dockerfile
+    volumes:
+      - ./frontend:/usr/share/nginx/html
